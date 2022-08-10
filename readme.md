@@ -19,3 +19,20 @@ node -r yml-register path/to/index.js
 require('yml-register')
 require('/path/to/my-file.yaml') // now it works!
 ```
+
+### Type Fixing for TypeScript Users
+
+In order to fixing the error `Cannot find module 'file.yaml' or its corresponding type declarations.` when using `import` statement in TypeScript,
+we provides a type declaration bundled in this package.
+
+What you need is to append `compilerOptions.types` by `yml-register/types` in `tsconfig.json`.
+
+```json
+{
+  "compilerOptions": {
+    "types": [
+      "yml-register/types"
+    ]
+  }
+}
+```
