@@ -1,8 +1,21 @@
 {
   "name": "yml-register",
   "description": "Hooks into Node's require function to load `.yaml` and `.yml` files",
-  "version": "1.1.0",
-  "main": "lib/index.js",
+  "version": "1.2.3",
+  "type": "module",
+  "main": "lib/index.mjs",
+  "files": [
+    "lib",
+    "types.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    },
+    "./types": "./types.d.ts",
+    "./package.json": "./package.json"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shigma/yml-register.git"
@@ -13,10 +26,6 @@
   "homepage": "https://github.com/shigma/yml-register",
   "author": "Shigma <shigma10826@gmail.com>",
   "license": "MIT",
-  "files": [
-    "lib",
-    "types.d.ts"
-  ],
   "scripts": {
     "build": "tsc -b"
   },
