@@ -16,7 +16,7 @@ CJS:
 node -r yml-register path/to/index.cjs
 ```
 
-ESM:
+ESM (Node.js 20.6.0 or later):
 
 ```sh
 node --import yml-register path/to/index.mjs

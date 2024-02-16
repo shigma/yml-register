@@ -1,14 +1,16 @@
 import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
-import { createRequire, InitializeHook, LoadHook, register, ResolveHook } from 'node:module'
+import { createRequire, InitializeHook, LoadHook, Module, ResolveHook } from 'node:module'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import * as yaml from 'js-yaml'
 
-const fileURL = typeof import.meta.url === 'string' ? import.meta.url : pathToFileURL(__filename)
+const fileURL = typeof import.meta.url === 'string' ? new URL(import.meta.url) : pathToFileURL(__filename)
 const require = createRequire(fileURL)
 
 // for esm
-register(fileURL)
+// Module.register is only available in Node.js v20.6.0 or later
+// https://nodejs.org/api/module.html#moduleregisterspecifier-parenturl-options
+Module.register?.(fileURL.href)
 
 // for cjs
 for (const extname of ['.yml', '.yaml']) {
